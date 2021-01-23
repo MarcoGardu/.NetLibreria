@@ -1,0 +1,123 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="PaginaMaestra.Master.cs" Inherits="Librería._default" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <!--css generales y customizados -->
+    <link href="css/main.css" rel="stylesheet" />
+    <!--css para Boostrap-->
+    <link href="bootstrap4/css/bootstrap.min.css" rel="stylesheet" />
+    <!--css para DataTables https://datatables.net-->
+    <link href="DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <!--css para FontAwesome-->
+    <link href="FontAwesome/css/all.min.css" rel="stylesheet" />
+
+    <!--js para Boostrap y jQuery-->
+    <script src="bootstrap4/js/jquery-3.5.1.min.js"></script>
+    <script src="bootstrap4/js/bootstrap.min.js"></script>
+    <script src="bootstrap4/js/popper.min.js"></script>
+    <!--js para DataTables-->
+    <script src="DataTables/js/jquery.dataTables.min.js"></script>
+
+    <!-- Contenedor por si en las páginas se requiere encabezado extra -->
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+    <!-- SweetAlert -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        function alertaEcho(mensaje) { swal("Realizado!", mensaje, "success"); }
+        function alertaFallo(mensaje) { swal("Algo salió mal!", mensaje, "error"); }
+        function alertaInfo(mensaje) { swal("Mensaje del sistema!", mensaje, "info"); }
+        function alertaSaludo(saludo, mensaje) { swal(saludo,mensaje); }
+        
+    </script>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <!-- Menú de navegación estatico bootstrap-->
+        <div>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <a class="navbar-brand" href="#">
+                    <img src="Imagenes/logo.png" width="70" />
+                    Librería el tejocote
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active"><a class="nav-link barra" href="default.aspx">Inicio <span class="sr-only">(current)</span></a></li>
+                        <li class="nav-item active"><a class="nav-link barra" href="Conocenos.aspx">Conocenos</a></li>
+                    </ul>
+
+                    <ul class="navbar-nav">
+                        <li class="nav-item active">
+                            <asp:LinkButton class="nav-link barra" ID="btnVerLibros" runat="server" OnClick="verLibros">Ver libros</asp:LinkButton></li>
+                        <li class="nav-item active">
+                            <asp:LinkButton class="nav-link barra" ID="btnLogin" runat="server" OnClick="loginUser">Login</asp:LinkButton></li>
+                        <li class="nav-item active">
+                            <asp:LinkButton class="nav-link barra" ID="btnRegistrarse" runat="server" OnClick="registrarse">Registrate</asp:LinkButton></li>
+                        <li class="nav-item active">
+                            <asp:LinkButton class="nav-link barra" ID="btnPerfil" runat="server" OnClick="verPerfil" Visible="false">Perfil </asp:LinkButton></li>
+                        <li class="nav-item active">
+                            <asp:LinkButton Class="nav-link barra" ID="btnloginAdmin" runat="server" OnClick="loginAdmin">Administrador</asp:LinkButton></li>
+                        <li class="nav-item active">
+                            <asp:LinkButton Class="nav-link barra" ID="btnInventario" runat="server" OnClick="verInventario" Visible="false">Inventario</asp:LinkButton></li>
+                        <li class="nav-item active">
+                            <asp:LinkButton Class="nav-link barra" ID="btnPrestamos" runat="server" OnClick="verPrestamos" Visible="false">Prestamos</asp:LinkButton></li>
+                        <li class="nav-item active">
+                            <asp:LinkButton Class="nav-link barra" ID="btnUsuarios" runat="server" OnClick="verUsuarios" Visible="false">Gestionar usuarios</asp:LinkButton></li>
+                        <li class="nav-item active">
+                            <asp:LinkButton Class="nav-link barra" ID="btnAutores" runat="server" OnClick="verAutores" Visible="false">Autores</asp:LinkButton></li>
+                        <li class="nav-item active">
+                            <asp:LinkButton Class="nav-link barra" ID="btnEditoriales" runat="server" OnClick="verEditoriales" Visible="false">Editoriales</asp:LinkButton></li>
+                        <li class="nav-item active">
+                            <asp:LinkButton class="nav-link barra" ID="btnSalir" runat="server" Visible="false" OnClick="logout">Logout</asp:LinkButton></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+        <!-- Contenido de la página -->
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+
+        <!-- Pie de la página -->
+        <footer>
+            <div class="direccion" id="contacto">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-7 col-sm-12">
+                            <h4 class="titulo">
+                                <br />
+                                Contacto<hr>
+                            </h4>
+                            <p class="datos">Email: correo[@]gmail.com</p>
+                            <p class="datos">Teléfono: (678) 234-2347</p>
+                            <p class="datos">Calle Olmillos, El Tejocote, 56265 Texcoco, Méx. En el parque el Tejocote</p>
+                        </div>
+                        <div class="col-md-5 col-sm-12">
+                            <a href="#" class="text-light text-decoration-none">
+                                <i class="fas fa-book logo">&nbsp; Librería el Tejocote</i><br />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>&copy; Todos los derechos reservados para Marco Antonio Garduño Correa</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </footer>
+    </form>
+</body>
+</html>
